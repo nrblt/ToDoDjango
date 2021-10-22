@@ -1,0 +1,21 @@
+{%  extends 'base.html' %}
+
+{% block head %}  <title>Task</title>{% endblock%}
+
+{% block body %}
+
+<form action="/" method="POST">
+    {% csrf_token %}
+    {{form.title}}
+    <input type="submit" name="Create Task" value="Create">
+</form>
+{% for list in object%}
+<div>
+    <a href="{% url 'task_update' list.id %}">Update</a>
+    <a href="{% url 'task_delete' list.id %}">Delete</a>
+
+    <p>{{list.title}}</p>
+    </div>
+{% endfor %}
+{% endblock %}
+
